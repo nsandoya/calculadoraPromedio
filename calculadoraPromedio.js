@@ -5,6 +5,7 @@ let nota = null
 let total = 0
 let promedio = 0
 
+// Procesos que se ejecutan mientras no se ingrese, o haya errores, en: nombre del alumno, materia, o notas
 while(!nombreAlumno || !materia || nota == null){
     if (!nombreAlumno){
         nombreAlumno = text("Alumno");
@@ -15,13 +16,16 @@ while(!nombreAlumno || !materia || nota == null){
     };
 };
 aprobado(promedio, nombreAlumno, materia);
-console.log(nombreAlumno, materia, promedio.toFixed(2));
+/* console.log(nombreAlumno, materia, promedio.toFixed(2)); */
 
+// Fx generada en https://regex-generator.olafneumann.org/
+// Aquí se genera un patrón con el cual comparar y validar si el nombre del alumno y la materia cuentan con el formato correcto
 function useRegex(input) {
     let regex = /^[A-Za-z]/;
     return regex.test(input);
-};
+}; 
 
+// Nos permite obtener nombre del alumno, materia, o algún otro texto necesario
 function text(tipo){
     let texto;
     while (!texto || isNaN(texto)==false || rgx == false){
@@ -33,10 +37,10 @@ function text(tipo){
             alert("No se admiten números");
         };
     };
-    console.log(rgx);
     return texto;
 };
 
+// Nos permite obtener 3 calificaciones, validarlas y promediarlas
 function notasYPromedio(){
     let i;
     for (i=0; i<3; i++){
@@ -54,15 +58,16 @@ function notasYPromedio(){
     };
     
     promedio = total / 3;
-    console.log(promedio);
     return promedio;
-    
 };
 
+// Nos permite saber si el alumno ha aprobado o no la materia
 function aprobado(promedio, nombreAlumno, materia){
     if (promedio >= 7){
         alert(`${nombreAlumno}, ¡felicidades! Has aprobado ${materia} con un promedio de ${promedio.toFixed(2)}`);
+        console.log(`${nombreAlumno}, ¡felicidades! Has aprobado ${materia} con un promedio de ${promedio.toFixed(2)}`);
     }else if(promedio < 7){
         alert(`${nombreAlumno}, gracias por tu esfuerzo. Nos vemos pronto en clase. El promedio obtenido en ${materia} es de ${promedio.toFixed(2)}`);
+        console.log(`${nombreAlumno}, gracias por tu esfuerzo. Nos vemos pronto en clase. El promedio obtenido en ${materia} es de ${promedio.toFixed(2)}`);
     };
 };
